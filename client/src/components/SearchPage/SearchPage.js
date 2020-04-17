@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useHistory } from "react-router-dom"
 import styled from 'styled-components';
 import RenderItem from '../ItemGrid/RenderItem';
 import Sidebar from '../Sidebar';
 import SortDropdown from '../SortDropdown';
 import { SideAndGrid, GridContainer, GridWrapper } from '../CONSTANTS';
 import ReusableGrid from '../ReusableGrid/index';
+import { set } from 'date-fns';
 
 
 
@@ -25,12 +26,23 @@ const SearchPage = () => {
             .then(res => res.json())
             .then(data => setSearched(data))
         //.catch(() => window.alert('Your search returned no results.'))
-    }, [query, sortState])
+    }, [query, sortState, page])
 
-    console.log(searched)
+
+
+    console.log("here is the data you searched", searched)
     if (searched === null) {
         return (
             <div>loading</div>
+        )
+    } else if (searched.length === 0) {
+        return (
+            <div>
+                End of Results
+                <button onClick={() => setPage(page - 1)}>Go back</button>
+            </div>
+
+
         )
     }
 

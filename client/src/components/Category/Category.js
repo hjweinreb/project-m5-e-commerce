@@ -57,8 +57,8 @@ const Category = () => {
 
     if (currentItems.items != null) {
         console.log(currentItems.items.length)
-
     }
+
 
     return (
         <React.Fragment>
@@ -87,6 +87,7 @@ const Category = () => {
                                     </Link>
                                 })}
                             </GridWrapper>
+                            {currentItems.items.length < 9 && <ButtonWrapper><button onClick={() => setPageCounter(pageCount -= 1)} > ← </button></ButtonWrapper>}
                             {currentItems.items.length > 8 && <ButtonWrapper>
                                 {pageCount > 1 && <button onClick={() => setPageCounter(pageCount -= 1)}>
                                     ←
@@ -97,6 +98,8 @@ const Category = () => {
                                 <button onClick={() => setPageCounter(pageCount += 1)}>
                                     →
                       </button>
+
+
                             </ButtonWrapper>}
                         </GridContainer>
                     </SideAndGrid>

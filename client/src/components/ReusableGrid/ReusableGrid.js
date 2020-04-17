@@ -71,25 +71,23 @@ const ReusableGrid = ({ itemSource, exportPage, exportSort }) => {
                             )
                         })}
                     </GridWrapper>
-                    {/* make this button wrapper reusableinsde category as well.  */}
-                    <ButtonWrapper>
-
+                    {itemSource.length < 9 && <ButtonWrapper><button onClick={() => handleOnClick(pageCount -= 1)} > ← </button></ButtonWrapper>}
+                    {itemSource.length > 8 && <ButtonWrapper>
                         {pageCount > 1 && <button onClick={() => handleOnClick(pageCount -= 1)}>
-                            Previous
-                  </button>}
+                            ←
+                      </button>}
                         <button onClick={() => handleOnClick(pageCount)}>{pageCount}</button>
                         <button onClick={() => handleOnClick(pageCount + 1)}>{pageCount + 1}</button>
                         <button onClick={() => handleOnClick(pageCount + 2)}>{pageCount + 2}</button>
                         <button onClick={() => handleOnClick(pageCount += 1)}>
-                            >
-                  </button>
-                    </ButtonWrapper>
+                            →
+                      </button>
+
+
+                    </ButtonWrapper>}
                     {/* Search for for particular page? - is it necessary?*/}
                     {/* Missing Styling */}
-                    <form>
-                        <div>...current page: {pageCount}</div>
-                        <input type='text' onChange={handlePageFinder}></input>
-                    </form>
+
                 </GridContainer>
                 }
             </SideAndGrid>
